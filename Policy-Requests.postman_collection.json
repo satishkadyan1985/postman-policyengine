@@ -1,0 +1,1179 @@
+{
+	"info": {
+		"_postman_id": "1e01b49b-ecf4-4097-ad27-ec485d1347f5",
+		"name": "Policy Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Valid Policy Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authtoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PY_FIELD\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Policy Request with Extra Rule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PY_FIELD\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         },\n           \n         {\n            \"roleName\": \"E_HC_PY_PAYROLL_MANAGER\"\n            \n         }\n          \n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Policy Request Schema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"var schema ={\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"success\": {\r",
+							"      \"type\": \"boolean\"\r",
+							"    },\r",
+							"    \"data\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": [\r",
+							"        {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"doNotReplaceList\": {\r",
+							"              \"type\": \"boolean\"\r",
+							"            },\r",
+							"            \"rule\": {\r",
+							"              \"type\": \"object\",\r",
+							"              \"properties\": {\r",
+							"                \"id\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"intStatus\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"createdBy\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"createdOn\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"changedBy\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"changedOn\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"doNotReplaceList\": {\r",
+							"                  \"type\": \"boolean\"\r",
+							"                },\r",
+							"                \"extId\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                },\r",
+							"                \"text\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                },\r",
+							"                \"description\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                },\r",
+							"                \"conditionJson\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                },\r",
+							"                \"enforcement\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                },\r",
+							"                \"active\": {\r",
+							"                  \"type\": \"boolean\"\r",
+							"                },\r",
+							"                \"deleted\": {\r",
+							"                  \"type\": \"boolean\"\r",
+							"                }\r",
+							"              },\r",
+							"              \"required\": [\r",
+							"                \"id\",\r",
+							"                \"intStatus\",\r",
+							"                \"createdBy\",\r",
+							"                \"createdOn\",\r",
+							"                \"changedBy\",\r",
+							"                \"changedOn\",\r",
+							"                \"doNotReplaceList\",\r",
+							"                \"extId\",\r",
+							"                \"text\",\r",
+							"                \"description\",\r",
+							"                \"conditionJson\",\r",
+							"                \"enforcement\",\r",
+							"                \"active\",\r",
+							"                \"deleted\"\r",
+							"              ]\r",
+							"            },\r",
+							"            \"cause\": {\r",
+							"              \"type\": \"array\",\r",
+							"              \"items\": [\r",
+							"                {\r",
+							"                  \"type\": \"object\",\r",
+							"                  \"properties\": {\r",
+							"                    \"attribute\": {\r",
+							"                      \"type\": \"string\"\r",
+							"                    },\r",
+							"                    \"value\": {\r",
+							"                      \"type\": \"array\",\r",
+							"                      \"items\": [\r",
+							"                        {\r",
+							"                          \"type\": \"string\"\r",
+							"                        },\r",
+							"                        {\r",
+							"                          \"type\": \"string\"\r",
+							"                        }\r",
+							"                      ]\r",
+							"                    }\r",
+							"                  },\r",
+							"                  \"required\": [\r",
+							"                    \"attribute\",\r",
+							"                    \"value\"\r",
+							"                  ]\r",
+							"                }\r",
+							"              ]\r",
+							"            },\r",
+							"            \"active\": {\r",
+							"              \"type\": \"boolean\"\r",
+							"            },\r",
+							"            \"deleted\": {\r",
+							"              \"type\": \"boolean\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"doNotReplaceList\",\r",
+							"            \"rule\",\r",
+							"            \"cause\",\r",
+							"            \"active\",\r",
+							"            \"deleted\"\r",
+							"          ]\r",
+							"        }\r",
+							"      ]\r",
+							"    },\r",
+							"    \"numberOfElements\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"totalPages\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"totalElements\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"pageNumber\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"pageSize\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"success\",\r",
+							"    \"data\",\r",
+							"    \"numberOfElements\",\r",
+							"    \"totalPages\",\r",
+							"    \"totalElements\",\r",
+							"    \"pageNumber\",\r",
+							"    \"pageSize\"\r",
+							"  ]\r",
+							"}\r",
+							"var json =pm.response.json()\r",
+							"pm.test('schema is valid',function(){\r",
+							"\r",
+							"    pm.expect(tv4.validate(json,schema)).to.be.true;\r",
+							"})\r",
+							"    \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authtoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PY_FIELD\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Policy Request with response code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Response Code Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].rule.responseCodes.length).to.gt(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PRJ_BEN_CONFIG_UPDATE\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"EPOLGRP1\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Policy Request with Risk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Risk Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].rule.risks.length).to.eql(1);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"EMPLOYEE_ROLE1\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"SOD-Single-Risk\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Policy Request with Risk and assign mitigation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Risk Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].rule.risks.length).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Risk Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].rule.risks.mitigation.length).to.eql(1);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"EMPLOYEE_ROLE1\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"SOD-Single-Risk\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty Policy Group Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e4fe5152-2b95-42d4-86b5-0de67bb2df96",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authtoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PY_FIELD\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         }\n      ]\n   }\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty JSON Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b776f8c-8020-4d15-9323-24b8003f49a4",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authtoken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b776f8c-8020-4d15-9323-24b8003f49a4",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty RoleList Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b776f8c-8020-4d15-9323-24b8003f49a4",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n   \t\"roleData\":[\n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty Role Name Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8b776f8c-8020-4d15-9323-24b8003f49a4",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(false);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Invalid Token Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer INVALIDTOKEN"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"E_HC_PY_FIELD\"\n         },\n         {\n            \"roleName\":\"E_HC_PY_RECON\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"POLGRPID\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PolGrp1 does not exist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f36f2b9-fc4e-4cb8-95fe-59b3fe128137",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Result Success test\", function () {",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authtoken}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"request\": {\n        \"roleData\": [\n            {\n                \"roleName\": \"E_HC_PY_PAYROLL_CONTROLS\"\n            }\n        ]\n    },\n    \"policyGroup\": [\n        \"EPOLGRP\"\n    ]\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inactive Policy Group Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "861e1483-e8fc-4013-bde6-9b939df777ae",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Result Success test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"request\": {\n    \"roleData\": [\n      {\n        \"roleName\": \"EMPLOYEE_ROLE1\"\n      },\n      {\n        \"roleName\": \"EMPLOYEE_ROLE1_LENEL_REG\"\n      }\n    ]\n  },\n  \"policyGroup\": [\n    \"POLGRP2\"\n  ]\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inactive RuleSet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "861e1483-e8fc-4013-bde6-9b939df777ae",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Result Success test\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request\": {\r\n        \"roleData\": [\r\n            {\r\n                \"roleName\": \"002570 ASHLAND GATE1\"\r\n            },\r\n\t\t\t\r\n\t\t\t  {\r\n                \"roleName\": \"002570 ASHLAND GATE1_LENEL_REG\"\r\n            }\r\n        ]\r\n    },\r\n    \"policyGroup\": [\r\n        \"POL-RULSET-INACTIVE\"\r\n    ]\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleted Policy Group Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "80525c6a-3e8c-434d-af1c-9ab51e02464b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Message Policy group does not exist\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.success).to.eql(true);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"request\": {\n    \"roleData\": [\n      {\n        \"roleName\": \"EMPLOYEE_ROLE1\"\n      },\n      {\n        \"roleName\": \"EMPLOYEE_ROLE1_LENEL_REG\"\n      }\n    ]\n  },\n  \"policyGroup\": [\n    \"POLGRP3\"\n  ]\n}",
+					"options": {
+						"raw": {}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleted RuleSet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86952e71-55e7-4954-bdf8-1a9766fa8fd4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Result Success test\", function () {",
+							"   var jsonData = pm.response.json();",
+							"   pm.expect(jsonData.success).to.eql(false);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"request\": {\r\n        \"roleData\": [\r\n            {\r\n                \"roleName\": \"EMPLOYEE_ROLE1\"\r\n            },\r\n\t\t\t\r\n\t\t\t  {\r\n                \"roleName\": \"EMPLOYEE_ROLE1_LENEL_REG\"\r\n            }\r\n        ]\r\n    },\r\n    \"policyGroup\": [\r\n        \"PolGRP-RuleSet-Not-Exist\"\r\n    ]\r\n} ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Valid Policy Request with Multiple Risk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5009c1c8-8ad0-4ff7-8c35-15056c9f95f3",
+						"exec": [
+							"pm.test(\"Status test\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.eql(true);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result Risk Success test\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data[0].rule.risks.length).to.gt(1);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{authtoken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"request\":{\n      \"roleData\":[\n         {\n            \"roleName\":\"LDAP_ASSOCIATE_122_RECON\"\n         },\n         {\n         \t\"roleName\":\"LDAP_ASSOCIATE_215\"\n         }\n      ]\n   },\n   \"policyGroup\":[\n      \"PolicyGroup2\"\n   ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/policyengine/execute",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"policyengine",
+						"execute"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
